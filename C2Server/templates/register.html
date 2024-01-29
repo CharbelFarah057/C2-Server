@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/register.css') }}">
+</head>
+
+<body>
+
+    <div class="register-container">
+        <div class="register-header">
+            <h2>Register</h2>
+        </div>
+        <div class="admin-block">
+            <h3>Admin Password</h3>
+            <form action="/api/register" method="post">
+                <div class="input-group">
+                    <input type="password" id="admin-password" name="admin-password" required placeholder="Admin Password">
+                </div>
+        </div>
+        <div class="user-block">
+            <div class="input-group">
+                <input type="text" id="new-username" name="new-username" required placeholder="New Username">
+            </div>
+            <div class="input-group">
+                <input type="password" id="new-password" name="new-password" required placeholder="New Password">
+            </div>
+            <button type="submit" class="register-button">REGISTER</button>
+        </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #2c3e50;
+    color: white;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #34495e;
+  }
+  
+  .execute-btn {
+    width: 90px;
+    padding: 5px 15px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .execute-btn:hover {
+    background-color: #c0392b;
+  }
+  
+  .welcome-text {
+    color: #bdc3c7;
+  }
+  
+  .title h1 {
+    text-align: center;
+    color: #ecf0f1;
+  }
+  
+  .computer-list {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .computer-list th,
+  .computer-list td {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #7f8c8d;
+  }
+  
+  .computer-list th {
+    background-color: #34495e;
+  }
+  
+  .computer-list td input {
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .computer-list td button {
+    padding: 5px 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .computer-list td button:hover {
+    background-color: #2980b9;
+  }
+
+  .execute-all {
+    display: flex;
+    align-items: center;
+  }
+  
+  #execute-all-input {
+    width: 150%; 
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    color: #333;
+  }
+
+  .user-actions {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logout-btn {
+    padding: 5px 15px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  .logout-btn:hover {
+    background-color: #c0392b;
+  }
+
+  .output-row {
+    background-color: #f4f4f4;
+}
+
+.output-field {
+    padding: 10px;
+}
+
+.toggle-output {
+    cursor: pointer;
+}
+
+.arrow-btn {
+  padding: 5px 10px;
+  background-color: #8e44ad; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.arrow-btn:hover {
+  background-color: #7d3c98; 
+}
+
+.output-row td {
+  background-color: #34495e; 
+  color: #bdc3c7; 
+  padding: 10px;
+  font-size: 0.9em;
+}
+
+.computer-list td {
+  vertical-align: middle; 
+}
+
+.computer-list th:nth-child(6),
+.computer-list td:nth-child(6) {
+  width: 30%; 
+}

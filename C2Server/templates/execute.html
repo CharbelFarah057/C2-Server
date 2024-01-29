@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Execute Command</title>
+    </head>
+    <body>
+        <h1>Execute Command for {{agent_name}}</h1>
+        <form action = "/api/{{thread_uuid}}/execute_command" method = "POST">
+            <p>Enter Command: </p>
+            <input type = "text" name = "command" />
+            <input type = "submit" value = "Execute" />
+        </form>
+        <pre>
+            {{command_output}}
+        </pre>
+    </body>
+</html>

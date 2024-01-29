@@ -1,0 +1,65 @@
+/* ... (existing CSS for body, buttons, etc.) ... */
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    font-family: Arial, sans-serif;
+}
+
+.register-container {
+    background: #444;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 300px;
+    /* Set a fixed width for the container */
+}
+
+.register-header h2 {
+    text-align: center;
+    color: #ffa500;
+}
+
+.admin-block,
+.user-block {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #555;
+    /* Slightly lighter than the container for contrast */
+    color: #fff;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.register-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffa500;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-sizing: border-box;
+}
+
+.register-button:hover {
+    background-color: #e69500;
+}
+
+
+/* ... (any additional CSS you might have) ... */
