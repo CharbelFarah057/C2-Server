@@ -53,7 +53,7 @@ if server_ready == "ready":
             client_socket.send("File uploaded successfully.".encode())
 
         elif command_to_execute.split(" ")[0] == "download":
-            file_path = os.path.basename(command_to_execute.split(" ")[1])
+            file_path = command_to_execute.split(" ")[1]
 
             with open(file_path, "rb") as f:
                 client_socket.send(f.read())

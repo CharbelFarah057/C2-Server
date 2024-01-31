@@ -12,6 +12,22 @@ document.addEventListener('click', function(event) {
     }
 });
 
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('execute-btn')) {
+        var xhr = new XMLHttpRequest();
+        var command = document.getElementById('execute-all-input').value;
+        xhr.open("POST", "/api/execute_all", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify({command: command}));
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                alert("Command sent successfully");
+            } else {
+                alert("Error sending command");
+            }
+        };
+    }
+})
 
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('toggle-output')) {

