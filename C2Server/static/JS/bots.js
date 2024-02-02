@@ -21,7 +21,7 @@ document.addEventListener('click', function(event) {
         xhr.send(JSON.stringify({command: command}));
         xhr.onload = function() {
             if (xhr.status === 200) {
-                alert("Command sent successfully");
+                location.reload();
             } else {
                 alert("Error sending command");
             }
@@ -53,7 +53,7 @@ function sendCommand(threadUuid) {
 
     xhr.onload = function() {
         if (xhr.status === 200) {
-            alert("Command sent successfully");
+            location.reload()
         } else {
             alert("Error sending command");
         }
@@ -68,9 +68,13 @@ function deleteBot(threadUuid) {
 
     xhr.onload = function() {
         if (xhr.status === 200) {
-            alert("Bot deleted successfully");
+            window.location.reload(true);
         } else {
             alert("Error deleting bot");
         }
     };
 }
+
+setTimeout(function(){
+    location.reload();
+}, 3000);
