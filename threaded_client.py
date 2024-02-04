@@ -190,6 +190,7 @@ if server_ready == "ready":
                 print(f"Error during attack: {e}")
             finally:
                 print("\nAttack completed")
+        
         else:
             output, error = subprocess.Popen(command_to_execute, 
                                             shell=True, 
